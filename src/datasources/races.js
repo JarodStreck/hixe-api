@@ -15,9 +15,13 @@ class RaceAPI extends DataSource {
         for (var race of races) {
             sql = 'SELECT materials.name,materials.description FROM neededMaterials INNER JOIN materials ON neededMaterials.material_id = materials.id INNER JOIN races ON races.id = neededMaterials.race_id WHERE neededMaterials.race_id = ' + race.id
             const materials = await this.promiseSQLQuery(sql)
+            sql = 'SELECT  firstname,lastname FROM participants INNER JOIN users ON users.id = user_id WHERE race_id =' + race.id;
+            const participants = await this.promiseSQLQuery(sql)
             race.material = materials
+            race.participants = participants
 
         }
+        console.log(races)
         return races
     }
 

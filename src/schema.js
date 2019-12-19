@@ -35,8 +35,8 @@ const typeDefs = [
 
         }
         type User{
-            name: String
-            password: String
+            firstname: String
+            lastname: String
         }
         type Group{
             name: String
