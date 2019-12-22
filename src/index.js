@@ -3,6 +3,8 @@ const typeDefs = require("./schema.js");
 //const { makeExecutableSchema } = require("graphql-tools");
 const RaceAPI = require("./datasources/races.js")
 const resolvers = require("./resolvers.js");
+const dotenv = require('dotenv');
+dotenv.config();
 
 
 const dataSources = () => ({

@@ -1,9 +1,11 @@
 var mysql = require('mysql');
+const dotenv = require('dotenv');
+
 var connection = mysql.createConnection({
-    host: '127.0.0.1',
-    user: 'root',
-    password: '',
-    database: 'hixe'
+    host: dotenv.HOST,
+    user: dotenv.USER,
+    password: dotenv.PASSWORD,
+    database: dotenv.DATABASE
 });
 
 connection.connect(function (err) {
