@@ -13,39 +13,25 @@ const typeDefs = [
         type Mutation {
             createRace(race: String): Race
         }
+        type Difficulty{
+            name: String
+        }
+        type State{
+            name: String
+        }
         type Race{
             Id: ID
+            name: String
+            description: String
             startDate: String
             endDate: String
-            state: String
             formType: String
-            location: String
-            raceType: String
-            raceOwner: User
-            meetingLocation: String
             meetingHour: String
-            difficulty: String
-            name: String
             heightDifference: Int
             maxParticipant: Int
-            material: [Material]
-            description: String
-            group: Group
-            participants: [User]
-
+            state: State
+            difficulty: Difficulty
         }
-        type User{
-            firstname: String
-            lastname: String
-        }
-        type Group{
-            name: String
-        }
-        type Material{
-            name: String
-            description: String
-        }
-
     `
 ];
 

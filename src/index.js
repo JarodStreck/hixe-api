@@ -3,27 +3,19 @@ const typeDefs = require("./schema.js");
 //const { makeExecutableSchema } = require("graphql-tools");
 const RaceAPI = require("./datasources/races.js")
 const resolvers = require("./resolvers.js");
-const dotenv = require('dotenv');
-dotenv.config();
-
+const db = require('../models');
 
 const dataSources = () => ({
     raceAPI: new RaceAPI,
 });
 
-
-
-// const schema = makeExecutableSchema({
-//     typeDefs: typeDefs,
-//     resolvers
-// });
 const server = new ApolloServer({
     typeDefs: typeDefs,
     resolvers,
+    context: { db },
     dataSources
 });
-// This `listen` method launches a web-server.  Existing apps
-// can utilize middleware options, which we'll discuss later.
+
 server.listen().then(({ url }) => {
     console.log(`🚀  Server ready at ${url}`);
 });
