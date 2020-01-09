@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     group_id: DataTypes.INTEGER,
 
   }, {});
-  users.associate = function(models) {
+  users.associate = function (models) {
     users.belongsTo(models.group)
   };
   return users;

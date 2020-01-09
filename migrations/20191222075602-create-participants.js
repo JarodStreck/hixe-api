@@ -8,18 +8,18 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      user_id: {
+      userId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'users',
-          key:'id'
+          key: 'id'
         }
       },
-      race_id: {
+      raceId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'races',
-          key:'id'
+          key: 'id'
         }
       },
       isOwner: {

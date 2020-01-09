@@ -20,11 +20,11 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
-      group_id: {
+      groupId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'groups',
-          key:'id'
+          key: 'id'
         }
       },
       createdAt: {

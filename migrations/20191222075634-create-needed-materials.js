@@ -8,18 +8,18 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      material_id: {
+      materialId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'materials',
-          key:'id'
+          key: 'id'
         }
       },
-      race_id: {
+      raceId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'races',
-          key:'id'
+          key: 'id'
         }
       },
       createdAt: {

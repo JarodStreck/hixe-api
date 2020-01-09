@@ -25,8 +25,19 @@ class RaceAPI extends DataSource {
         //     race.participants = participants
 
         // }
-        console.log(Races.findAll())
+        // const races = Races.findAll()
+        // races.then((result) => {
+        //     console.log(result.get)
+        // })
         return Races.findAll()
+    }
+    async getRaceById(id) {
+
+        return Races.findAll({
+            where: {
+                id: id
+            }
+        })
     }
 
     // async promiseSQLQuery(query) {
