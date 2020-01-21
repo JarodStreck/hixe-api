@@ -4,6 +4,9 @@ const { DataSource } = require("apollo-datasource");
 
 var db = require('../../models')
 var Races = db.races;
+var Difficulties = db.difficulties;
+var States = db.state;
+var Materials = db.materials;
 class RaceAPI extends DataSource {
     /*initialize(config) {
         this.context = config.context;
@@ -39,10 +42,18 @@ class RaceAPI extends DataSource {
             }
         })
     }
-
+    async getDifficulties() {
+        return Difficulties.findAll()
+    }
+    async getStates() {
+        return States.findAll()
+    }
+    async getMaterials() {
+        return Materials.findAll()
+    }
     async createRace(race) {
         return Races.create({
-            name : race.name,
+            name: race.name,
             description: race.description,
             startDate: race.startDate,
             endDate: race.endDate,

@@ -5,12 +5,14 @@ const {
 // Type definitions define the "shape" of your data and specify
 // which ways the data can be fetched from the GraphQL server.
 const typeDefs = [
-    gql `
+    gql`
         type Query {
             getRace(id: ID): [Race]
             getRaces: [Race]
             getUserRaces: [Race] 
             getMaterials: [Material]
+            getDifficulties: [Difficulty]
+            getStates: [State]
             createRaceformInfo: [Race]
         }
 
@@ -27,12 +29,15 @@ const typeDefs = [
         }
       
         type Difficulty{
+            id: ID!
             name: String
         }
         type State{
+            id: ID!
             name: String
         }
         type Material{
+            id: ID!
             name: String
         }
         type Group{
