@@ -26,6 +26,9 @@ module.exports = {
       meetingHour: {
         type: Sequelize.DATE
       },
+      meetingLocation: {
+        type: Sequelize.STRING
+      },
       heightDifference: {
         type: Sequelize.INTEGER
       },
