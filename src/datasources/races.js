@@ -40,6 +40,20 @@ class RaceAPI extends DataSource {
         })
     }
 
+    async createRace(race) {
+        return Races.create({
+            name : race.name,
+            description: race.description,
+            startDate: race.startDate,
+            endDate: race.endDate,
+            formType: race.formType,
+            meetingHour: race.meetingHour,
+            meetingLocation: race.meetingLocation,
+            heightDifference: race.heightDifference,
+            maxParticipant: race.maxParticipant,
+        })
+    }
+
     // async promiseSQLQuery(query) {
     //     return new Promise((resolve, reject) => {
     //         db.query(query, (error, results, fields) => {

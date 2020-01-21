@@ -1,15 +1,29 @@
-const { gql } = require("apollo-server");
+const {
+    gql
+} = require("apollo-server");
 
 // Type definitions define the "shape" of your data and specify
 // which ways the data can be fetched from the GraphQL server.
 const typeDefs = [
-    gql`
+    gql `
         type Query {
             getRace(id: ID): [Race]
-            getRaces: [Race] 
+            getRaces: [Race]
             getUserRaces: [Race] 
             getMaterials: [Material]
             createRaceformInfo: [Race]
+        }
+
+        type Mutation {
+            createRace (name: String
+            description: String
+            startDate: String
+            endDate: String
+            formType: String
+            meetingHour: String
+            meetingLocation: String
+            heightDifference: Int
+            maxParticipant: Int): [Race]
         }
       
         type Difficulty{
@@ -37,6 +51,7 @@ const typeDefs = [
             endDate: String
             formType: String
             meetingHour: String
+            meetingLocation: String
             heightDifference: Int
             maxParticipant: Int
             state: State

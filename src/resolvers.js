@@ -8,6 +8,11 @@ const resolvers = {
             return dataSources.raceAPI.getRaceById(args.id);
         }
     },
+    Mutation: {
+        createRace: async (_, args, { dataSources }) => {
+            return dataSources.raceAPI.createRace(args);
+        }
+    },
     Race: {
         async state(race) {
             return race.getState()
