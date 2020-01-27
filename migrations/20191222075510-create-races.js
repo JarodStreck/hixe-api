@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('races', {
+    return queryInterface.createTable("races", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -32,18 +32,18 @@ module.exports = {
       maxParticipant: {
         type: Sequelize.INTEGER
       },
-      stateId:{
+      stateId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'states',
-          key:'id'
+          model: "states",
+          key: "id"
         }
       },
-      difficultyId:{
+      difficultyId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'difficulties',
-          key:'id'
+          model: "difficulties",
+          key: "id"
         }
       },
       createdAt: {
@@ -57,6 +57,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('races');
+    return queryInterface.dropTable("races");
   }
 };
