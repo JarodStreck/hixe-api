@@ -5,22 +5,40 @@ const { gql } = require("apollo-server");
 const typeDefs = [
   gql`
     scalar Date
-
     type Query {
       getRace(id: ID): [Race]
-      getRaces(id: ID): [Race]
+      getRaces: [Race]
       getUserRaces: [Race]
       getMaterials: [Material]
+      getDifficulties: [Difficulty]
+      getStates: [State]
       createRaceformInfo: [Race]
     }
 
+    type Mutation {
+      createRace(
+        name: String
+        description: String
+        startDate: String
+        endDate: String
+        formType: String
+        meetingHour: String
+        meetingLocation: String
+        heightDifference: Int
+        maxParticipant: Int
+      ): [Race]
+    }
+
     type Difficulty {
+      id: ID!
       name: String
     }
     type State {
+      id: ID!
       name: String
     }
     type Material {
+      id: ID!
       name: String
     }
     type Group {
@@ -39,6 +57,7 @@ const typeDefs = [
       endDate: Date
       formType: String
       meetingHour: Date
+      meetingLocation: String
       heightDifference: Int
       maxParticipant: Int
       state: State
