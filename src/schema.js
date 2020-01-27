@@ -5,6 +5,7 @@ const { gql } = require("apollo-server");
 const typeDefs = [
   gql`
     scalar Date
+
     type Query {
       getRace(id: ID): [Race]
       getRaces: [Race]

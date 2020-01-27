@@ -22,9 +22,6 @@ const resolvers = {
       return dataSources.raceAPI.createRace(args);
     }
   },
-  getRace: async (_, args, { dataSources }) => {
-    return dataSources.raceAPI.getRaceById(args.id);
-  },
 
   Race: {
     async state(race) {
