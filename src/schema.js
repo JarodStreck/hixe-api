@@ -11,21 +11,13 @@ const typeDefs = [
             getRaces: [Race]
             getUserRaces: [Race] 
             getMaterials: [Material]
-            getDifficulties: [Difficulty]
-            getStates: [State]
+            getDifficulties: Difficulty
+            getStates: State
             createRaceformInfo: [Race]
         }
 
         type Mutation {
-            createRace (name: String
-            description: String
-            startDate: String
-            endDate: String
-            formType: String
-            meetingHour: String
-            meetingLocation: String
-            heightDifference: Int
-            maxParticipant: Int): [Race]
+            createRace (input: RaceInput): Race
         }
       
         type Difficulty{
@@ -48,6 +40,20 @@ const typeDefs = [
             lastname: String
             group: Group
         }
+        input RaceInput{
+            name: String
+            description: String
+            startDate: String
+            endDate: String
+            formType: String
+            meetingHour: String
+            meetingLocation: String
+            heightDifference: Int
+            maxParticipant: Int
+            stateId: ID
+            difficultyId: ID!
+        }
+
         type Race{
             Id: ID
             name: String
