@@ -53,15 +53,16 @@ class RaceAPI extends DataSource {
     }
     async createRace(race) {
         return Races.create({
-            name: race.name,
-            description: race.description,
-            startDate: race.startDate,
-            endDate: race.endDate,
-            formType: race.formType,
-            meetingHour: race.meetingHour,
-            meetingLocation: race.meetingLocation,
-            heightDifference: race.heightDifference,
-            maxParticipant: race.maxParticipant,
+            name: race.input.name,
+            description: race.input.description,
+            startDate: race.input.startDate,
+            endDate: race.input.endDate,
+            formType: race.input.formType,
+            meetingHour: race.input.meetingHour,
+            meetingLocation: race.input.meetingLocation,
+            heightDifference: race.input.heightDifference,
+            maxParticipant: race.input.maxParticipant,
+            difficultyId: race.input.difficultyId
         })
     }
 
