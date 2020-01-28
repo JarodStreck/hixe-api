@@ -40,7 +40,8 @@ module.exports = {
         references: {
           model: 'states',
           key:'id'
-        }
+        },
+        defaultValue: 1
       },
       difficultyId:{
         type: Sequelize.INTEGER,
