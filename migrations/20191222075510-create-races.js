@@ -38,8 +38,8 @@ module.exports = {
       stateId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'states',
-          key:'id'
+          model: "states",
+          key: "id"
         },
         defaultValue: 1
       },
@@ -49,6 +49,14 @@ module.exports = {
           model: "difficulties",
           key: "id"
         }
+      },
+      userId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "users",
+          key: "id"
+        },
+        defaultValue: 1
       },
       createdAt: {
         allowNull: false,

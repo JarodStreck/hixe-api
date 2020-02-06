@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const races = sequelize.define(
     "races",
     {
+      Id: DataTypes.INTEGER,
       name: DataTypes.STRING,
       description: DataTypes.TEXT,
       startDate: DataTypes.DATE,
@@ -10,7 +11,8 @@ module.exports = (sequelize, DataTypes) => {
       formType: DataTypes.TEXT,
       meetingHour: DataTypes.DATE,
       heightDifference: DataTypes.INTEGER,
-      maxParticipant: DataTypes.INTEGER
+      maxParticipant: DataTypes.INTEGER,
+      creatorId: DataTypes.INTEGER
     },
     {}
   );
@@ -23,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     races.belongsToMany(models.users, {
       through: models.participants
     });
+    races.belongsTo(models.users, { as: "Creator" });
   };
   return races;
 };

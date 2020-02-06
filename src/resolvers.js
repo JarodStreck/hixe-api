@@ -1,8 +1,7 @@
 const resolvers = {
   Query: {
-    getRaces: async (_, __, { dataSources }) => {
-      console.log("ok");
-      return dataSources.raceAPI.getAllRaces();
+    getRaces: async (_, args, { dataSources }) => {
+      return dataSources.raceAPI.getAllRaces(args);
     },
     getRace: async (_, args, { dataSources }) => {
       return dataSources.raceAPI.getRaceById(args.id);
@@ -15,6 +14,9 @@ const resolvers = {
     },
     getMaterials: async (_, __, { dataSources }) => {
       return dataSources.raceAPI.getMaterials();
+    },
+    getUsers: async (_, __, { dataSources }) => {
+      return dataSources.raceAPI.getUsers();
     }
   },
   Mutation: {
@@ -24,8 +26,8 @@ const resolvers = {
   },
 
   Race: {
-    async state(race) {
-      return race.getState();
+    async state(race, args) {
+      return race.getState({ where: args });
     },
     async difficulty(race) {
       return race.getDifficulty();
@@ -35,6 +37,9 @@ const resolvers = {
     },
     async participants(race) {
       return race.getUsers();
+    },
+    async creator(race) {
+      return race.getCreator();
     }
     // state: async (obj, args, context, info) =>
     //     context.db.state.findByPk(obj.stateId),
