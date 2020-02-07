@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       endDate: DataTypes.DATE,
       formType: DataTypes.TEXT,
       meetingHour: DataTypes.DATE,
+      meetingLocation: DataTypes.STRING,
       heightDifference: DataTypes.INTEGER,
       maxParticipant: DataTypes.INTEGER,
       creatorId: DataTypes.INTEGER
