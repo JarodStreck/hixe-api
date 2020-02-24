@@ -1,5 +1,6 @@
 const { DataSource } = require("apollo-datasource");
 //const db = require('../utils/connect')
+const sequelize = require("sequelize");
 
 var db = require("../../models");
 var Races = db.races;
@@ -12,7 +13,7 @@ class RaceAPI extends DataSource {
   async getAllRaces(args) {
     let filter = {};
 
-    if (args.state || args.creator) {
+    if (args.state || args.creator || args.participant) {
       filter.include = [];
     }
     if (args.state) {
@@ -28,6 +29,12 @@ class RaceAPI extends DataSource {
         where: { id: args.creator }
       });
     }
+    if (args.participant) {
+      filter.include.push({
+        model: db.users,
+        where: { id: args.participant }
+      });
+    }
 
     return Races.findAll(filter);
   }
@@ -41,28 +48,53 @@ class RaceAPI extends DataSource {
   async getDifficulties() {
     return Difficulties.findAll();
   }
-  async getStates() {
-    return States.findAll();
+  async getStates(args) {
+    let filters = {};
+
+    if (args.filter) {
+      filters = {
+        where: { name: { [sequelize.Op.like]: "%" + args.filter + "%" } }
+      };
+    }
+    return States.findAll(filters);
   }
   async getMaterials() {
     return Materials.findAll();
   }
   async createRace(race) {
-    return Races.create({
-      name: race.input.name,
-      description: race.input.description,
-      startDate: race.input.startDate,
-      endDate: race.input.endDate,
-      formType: race.input.formType,
-      meetingHour: race.input.meetingHour,
-      meetingLocation: race.input.meetingLocation,
-      heightDifference: race.input.heightDifference,
-      maxParticipant: race.input.maxParticipant,
-      difficultyId: race.input.difficultyId
+    console.log(race);
+    let test = Races.create({
+      name: race.name,
+      description: race.description,
+      startDate: race.startDate,
+      endDate: race.endDate,
+      formType: race.formType,
+      meetingHour: race.meetingHour,
+      meetingLocation: race.meetingLocation,
+      heightDifference: race.heightDifference,
+      maxParticipant: race.maxParticipant,
+      stateId: 1,
+      difficultyId: race.difficultyId,
+      creatorId: 2
     });
+
+    console.log(test);
+    return test;
   }
-  async getUsers() {
-    return Users.findAll();
+  async getUsers(args) {
+    let filters = {};
+
+    if (args.filter) {
+      filters = {
+        where: {
+          [sequelize.Op.or]: [
+            { firstname: { [sequelize.Op.like]: "%" + args.filter + "%" } },
+            { lastname: { [sequelize.Op.like]: "%" + args.filter + "%" } }
+          ]
+        }
+      };
+    }
+    return Users.findAll(filters);
   }
 
   // async promiseSQLQuery(query) {

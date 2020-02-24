@@ -9,14 +9,14 @@ const resolvers = {
     getDifficulties: async (_, __, { dataSources }) => {
       return dataSources.raceAPI.getDifficulties();
     },
-    getStates: async (_, __, { dataSources }) => {
-      return dataSources.raceAPI.getStates();
+    getStates: async (_, args, { dataSources }) => {
+      return dataSources.raceAPI.getStates(args);
     },
     getMaterials: async (_, __, { dataSources }) => {
       return dataSources.raceAPI.getMaterials();
     },
-    getUsers: async (_, __, { dataSources }) => {
-      return dataSources.raceAPI.getUsers();
+    getUsers: async (_, args, { dataSources }) => {
+      return dataSources.raceAPI.getUsers(args);
     }
   },
   Mutation: {

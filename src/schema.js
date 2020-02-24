@@ -9,18 +9,31 @@ const typeDefs = [
 
     type Query {
       getRace(id: ID): [Race]
-      getRaces(state: Array, creator: ID): [Race]
+      getRaces(state: Array, creator: Array, participant: Array): [Race]
       getUserRaces: [Race]
       getMaterials: [Material]
       getDifficulties: [Difficulty]
-      getStates: [State]
+      getStates(filter: String): [State]
       getCreator: User
       createRaceformInfo: [Race]
-      getUsers: [User]
+      getUsers(filter: String): [User]
     }
 
     type Mutation {
-      createRace(input: RaceInput): Race
+      createRace(
+        name: String
+        minParticipant: Int
+        meetingHour: Date
+        meetingLocation: Date
+        startDate: Date
+        endDate: Date
+        heightDifference: String
+        description: String
+        maxParticipant: Int
+        minParticipant: Int
+        difficultyId: Int
+        formType: Int
+      ): Race
     }
 
     type Difficulty {
