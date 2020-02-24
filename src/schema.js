@@ -31,8 +31,9 @@ const typeDefs = [
         description: String
         maxParticipant: Int
         minParticipant: Int
-        difficultyId: Int
+        difficultyId: String
         formType: Int
+        materials: Array
       ): Race
     }
 

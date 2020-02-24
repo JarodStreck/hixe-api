@@ -62,8 +62,7 @@ class RaceAPI extends DataSource {
     return Materials.findAll();
   }
   async createRace(race) {
-    console.log(race);
-    let test = Races.create({
+    let newRace = await Races.create({
       name: race.name,
       description: race.description,
       startDate: race.startDate,
@@ -78,8 +77,11 @@ class RaceAPI extends DataSource {
       creatorId: 2
     });
 
-    console.log(test);
-    return test;
+    race.materials.map(material => {
+      newRace.addMaterials(material.id, { through: db.neededMaterials });
+    });
+
+    return newRace;
   }
   async getUsers(args) {
     let filters = {};
