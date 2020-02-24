@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  races.associate = function(models) {
+  races.associate = function (models) {
     races.belongsTo(models.state);
     races.belongsTo(models.difficulties);
     races.belongsToMany(models.materials, {

@@ -50,7 +50,7 @@ module.exports = {
           key: "id"
         }
       },
-      userId: {
+      creatorId: {
         type: Sequelize.INTEGER,
         references: {
           model: "users",
