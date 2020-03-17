@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   users.associate = function(models) {
     users.belongsTo(models.group);
+    users.belongsTo(models.participants, { foreignKey: "id" });
   };
   return users;
 };

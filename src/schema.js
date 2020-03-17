@@ -48,6 +48,7 @@ const typeDefs = [
     type Material {
       id: ID!
       name: String
+      check: Boolean
     }
     type Group {
       name: String

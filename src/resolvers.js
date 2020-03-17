@@ -1,3 +1,5 @@
+var db = require("../models");
+
 const resolvers = {
   Query: {
     getRaces: async (_, args, { dataSources }) => {
@@ -33,7 +35,16 @@ const resolvers = {
       return race.getDifficulty();
     },
     async materials(race) {
-      return race.getMaterials();
+      let materials = await race.getMaterials();
+      let materialsCheck = await race.getMaterialCheck();
+      let materialObj = materials.map(material => {
+        material.check = materialsCheck.map(materialCheck => {
+          return materialCheck.id == material.id ? true : false;
+        })[0];
+
+        return material;
+      });
+      return materialObj;
     },
     async participants(race) {
       return race.getUsers();
