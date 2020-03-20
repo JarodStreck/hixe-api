@@ -13,6 +13,11 @@ module.exports = (sequelize, DataTypes) => {
   );
   users.associate = function(models) {
     users.belongsTo(models.group);
+    users.belongsToMany(models.races, {
+      through: models.participants,
+      foreignKey: "userId",
+      as: "races"
+    });
   };
   return users;
 };

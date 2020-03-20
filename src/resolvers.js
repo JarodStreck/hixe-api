@@ -17,7 +17,10 @@ const resolvers = {
     },
     getUsers: async (_, args, { dataSources }) => {
       return dataSources.raceAPI.getUsers(args);
-    }
+    },
+    getUserRaces: async (_, args, { dataSources }) => {
+      return dataSources.raceAPI.getUserRaces(args);
+    },
   },
   Mutation: {
     createRace: async (_, args, { dataSources }) => {
