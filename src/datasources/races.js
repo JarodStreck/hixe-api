@@ -8,6 +8,7 @@ var Difficulties = db.difficulties;
 var States = db.state;
 var Materials = db.materials;
 var Users = db.users;
+var Participant = db.participants;
 
 class RaceAPI extends DataSource {
   async getAllRaces(args) {
@@ -96,6 +97,53 @@ class RaceAPI extends DataSource {
       };
     }
     return Users.findAll(filters);
+  }
+
+  async getUserRaces(args) {
+    let filter = {};
+    
+    if (!args.id) {
+      return "Missing id parameter"
+    }
+    
+    const users = await Users.findAll({
+      include: {
+        model: Races, 
+        through: Participant,
+        as: "races"
+      }, 
+      where: { 
+        id: args.id 
+      }
+    });
+    return users
+  
+    /* let filter = {};
+
+    if (args.state || args.creator || args.participant) {
+      filter.include = [];
+    }
+    if (args.state) {
+      filter.include.push({
+        model: db.state,
+        where: { name: args.state }
+      });
+    }
+    if (args.creator) {
+      filter.include.push({
+        model: db.users,
+        as: "Creator",
+        where: { id: args.creator }
+      });
+    }
+    if (args.participant) {
+      filter.include.push({
+        model: db.users,
+        where: { id: args.participant }
+      });
+    }
+
+    return Races.findAll(filter); */
   }
 
   // async promiseSQLQuery(query) {

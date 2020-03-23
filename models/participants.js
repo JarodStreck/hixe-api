@@ -10,8 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   participants.associate = function(models) {
-    participants.belongsTo(models.users);
-    participants.belongsTo(models.races);
+    
   };
   return participants;
 };

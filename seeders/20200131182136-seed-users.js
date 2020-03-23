@@ -10,7 +10,6 @@ module.exports = {
           lastname: "doe",
           password: "strongPassword",
           email: "joe@doe.ch",
-          groupId: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         }
