@@ -28,9 +28,9 @@ module.exports = (sequelize, DataTypes) => {
       as: "materialCheck"
     });
     races.belongsToMany(models.users, {
-      through: models.participants,
-      foreignKey: "raceId",
-      as: "races",
+      through: models.participants
+      //foreignKey: "raceId",
+      //as: "races",
     });
     races.belongsTo(models.users, { as: "Creator" });
   };
