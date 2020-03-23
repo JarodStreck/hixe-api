@@ -11,7 +11,6 @@ var Users = db.users;
 
 class RaceAPI extends DataSource {
   async getAllRaces(args) {
-    console.log(args);
     let filter = {};
 
     if (args.state || args.creator || args.participant) {
