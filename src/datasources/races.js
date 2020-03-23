@@ -19,20 +19,20 @@ class RaceAPI extends DataSource {
     if (args.state) {
       filter.include.push({
         model: db.state,
-        where: { name: args.state }
+        where: { name: args.state.name }
       });
     }
     if (args.creator) {
       filter.include.push({
         model: db.users,
         as: "Creator",
-        where: { id: args.creator }
+        where: { id: args.creator.id }
       });
     }
     if (args.participant) {
       filter.include.push({
         model: db.users,
-        where: { id: args.participant }
+        where: { id: args.participant.id }
       });
     }
 
@@ -85,7 +85,6 @@ class RaceAPI extends DataSource {
   }
   async getUsers(args) {
     let filters = {};
-
     if (args.filter) {
       filters = {
         where: {

@@ -17,11 +17,15 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  races.associate = function (models) {
+  races.associate = function(models) {
     races.belongsTo(models.state);
     races.belongsTo(models.difficulties);
     races.belongsToMany(models.materials, {
-      through: models.neededMaterials
+      through: "neededMaterials"
+    });
+    races.belongsToMany(models.materials, {
+      through: "materialHixeUsers",
+      as: "materialCheck"
     });
     races.belongsToMany(models.users, {
       through: models.participants
