@@ -27,6 +27,9 @@ const resolvers = {
   Mutation: {
     createRace: async (_, args, { dataSources }) => {
       return dataSources.raceAPI.createRace(args);
+    },
+    login: async (_, args, { dataSources }) => {
+      return dataSources.raceAPI.login(args);
     }
   },
 

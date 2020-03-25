@@ -1,7 +1,7 @@
 const { DataSource } = require("apollo-datasource");
 //const db = require('../utils/connect')
 const sequelize = require("sequelize");
-
+const jwt = require('jsonwebtoken');
 var db = require("../../models");
 var Races = db.races;
 var Difficulties = db.difficulties;
@@ -98,6 +98,19 @@ class RaceAPI extends DataSource {
     }
     return Users.findAll(filters);
   }
+  async login(args) {
+    var user;
+    var token;
+    user = await Users.findOne({ where: { email: args.email } })
+    if (user) {
+      token = jwt.sign({ id: user.id }, process.env.JWT_SECRET)
+      console.log("user already exist")
+    }
+    else {
+      user = await Users.create({ email: args.email, firstname: args.firstname, lastname: args.lastname })
+      token = jwt.sign({ id: user.id }, process.env.JWT_SECRET)
+      console.log("user created")
+    }
 
   async getUserRaces(args) {
     let filter = {};

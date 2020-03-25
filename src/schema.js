@@ -35,6 +35,9 @@ const typeDefs = [
         formType: Int
         materials: Array
       ): Race
+      
+      login(firstname: String,lastname:String,email:String): loginResponse
+
     }
 
     type Difficulty {
@@ -57,8 +60,8 @@ const typeDefs = [
       id: ID
       firstname: String
       lastname: String
-      group: Group
-      races: [Race]
+      email: String
+      group: Group!
     }
     type Race {
       Id: ID
@@ -89,6 +92,11 @@ const typeDefs = [
       maxParticipant: Int
       stateId: ID
       difficultyId: ID!
+    }
+    type loginResponse {
+      token: String
+      user: User
+      error: String
     }
   `
 ];

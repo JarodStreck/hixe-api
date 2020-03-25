@@ -1,3 +1,4 @@
+require('dotenv').config()
 const { ApolloServer } = require('apollo-server');
 const typeDefs = require("./schema.js");
 //const { makeExecutableSchema } = require("graphql-tools");
