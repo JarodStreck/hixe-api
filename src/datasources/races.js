@@ -1,7 +1,7 @@
 const { DataSource } = require("apollo-datasource");
 //const db = require('../utils/connect')
 const sequelize = require("sequelize");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 var db = require("../../models");
 var Races = db.races;
 var Difficulties = db.difficulties;
@@ -101,36 +101,39 @@ class RaceAPI extends DataSource {
   async login(args) {
     var user;
     var token;
-    user = await Users.findOne({ where: { email: args.email } })
+    user = await Users.findOne({ where: { email: args.email } });
     if (user) {
-      token = jwt.sign({ id: user.id }, process.env.JWT_SECRET)
-      console.log("user already exist")
+      token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
+      console.log("user already exist");
+    } else {
+      user = await Users.create({
+        email: args.email,
+        firstname: args.firstname,
+        lastname: args.lastname
+      });
+      token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
+      console.log("user created");
     }
-    else {
-      user = await Users.create({ email: args.email, firstname: args.firstname, lastname: args.lastname })
-      token = jwt.sign({ id: user.id }, process.env.JWT_SECRET)
-      console.log("user created")
-    }
-
+  }
   async getUserRaces(args) {
     let filter = {};
-    
+
     if (!args.id) {
-      return "Missing id parameter"
+      return "Missing id parameter";
     }
-    
+
     const users = await Users.findAll({
       include: {
-        model: Races, 
+        model: Races,
         through: Participant,
         as: "races"
-      }, 
-      where: { 
-        id: args.id 
+      },
+      where: {
+        id: args.id
       }
     });
-    return users
-  
+    return users;
+
     /* let filter = {};
 
     if (args.state || args.creator || args.participant) {
